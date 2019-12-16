@@ -10,8 +10,10 @@ public class Ball {
   int size;
   int xSpeed;
   int ySpeed;
+  Main main;
 
-  public Ball(int x, int y, int size, int xSpeed, int ySpeed) {
+  public Ball(Main main,int x, int y, int size, int xSpeed, int ySpeed) {
+    this.main = main;
     this.x = x;
     this.y = y;
     this.size = size;
@@ -21,9 +23,9 @@ public class Ball {
 
   public void update() {
 
-      x += xSpeed;
-      y += ySpeed;
-      collision();
+    x += xSpeed;
+    y += ySpeed;
+    collision();
 
 
   }
@@ -41,6 +43,10 @@ public class Ball {
     if (y > Gdx.graphics.getHeight() - size || y < 0 + size) {
       ySpeed = -ySpeed;
 
+    }
+
+    if (y - size * 2 < main.paddle.y && x > main.paddle.x && x < main.paddle.x + main.paddle.width) {
+      ySpeed = -ySpeed;
     }
 
   }

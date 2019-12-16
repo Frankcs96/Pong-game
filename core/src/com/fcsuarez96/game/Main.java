@@ -12,11 +12,14 @@ public class Main extends ApplicationAdapter {
 
   ShapeRenderer shape;
   Ball ball;
+  Paddle paddle;
+
 
   @Override
   public void create() {
     shape = new ShapeRenderer();
-    ball = new Ball(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 20, 3, 3);
+    ball = new Ball(this,Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 10, 3, 3);
+    paddle = new Paddle(300,60,80,15,4);
   }
 
   @Override
@@ -24,8 +27,10 @@ public class Main extends ApplicationAdapter {
     Gdx.gl.glClearColor(0, 0, 0, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     ball.update();
+    paddle.update();
     shape.begin(ShapeType.Filled);
     ball.draw(shape);
+    paddle.draw(shape);
     shape.end();
 
 
